@@ -1,0 +1,40 @@
+.cursor {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* .img {
+    max-width: 100%;
+    min-width: 100%;
+} */
+
+.mat-card {
+    background: #f4f4f4 !important;
+}
+
+.crop-image {
+    display: block;
+    height: 300px;
+    width: 100%;
+    background: #f4f4f4;
+    img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+      object-position: center;
+    }
+  }
+
+.btn-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+
+    button {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,90 @@
+<div class="form">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Form product
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="container" [formGroup]="form" (ngSubmit)="saveProduct()">
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field >
+              <mat-label>ID</mat-label>
+              <input
+                formControlName="id"  
+                matInput 
+                type="text"
+                placeholder="id" 
+                value="email@example.com">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field >
+              <mat-label>Title</mat-label>
+              <input
+                formControlName="title"  
+                matInput 
+                type="text"
+                placeholder="Title" 
+                value="email@example.com">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input
+                formControlName="price"  
+                matInput 
+                type="number"
+                placeholder="Price" 
+                >
+            </mat-form-field>
+            <div *ngIf="priceFiled.errors && priceFiled.dirty">
+              <p *ngIf="priceFiled.hasError('price_invalid') " >Invalid price - 10k max</p>
+              <p *ngIf="priceFiled.hasError('required')">Field require</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <mat-form-field >
+              <mat-label>Description</mat-label>
+              <textarea
+                formControlName="description"  
+                matInput 
+                type="text"
+                placeholder="Description" 
+                >
+              </textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <img *ngIf="(images$ | async) as image" [src]="image" alt="image" style="width: 20%;">
+            <br>
+            <br>
+            <input type="file" (change)="uploadFile($event)">
+            <br>
+            <br>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <button mat-raised-button type="submit" [disabled]="form.invalid">Save</button>
+          </div>
+        </div>
+
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div> 

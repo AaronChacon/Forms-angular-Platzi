@@ -1,0 +1,39 @@
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="box">
+                    <a routerLink="admin">
+                        <h3>Admin</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="box">
+                    <a routerLink="auth">
+                        <h3>Auth</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="box">
+                    <h3>Contact</h3>
+                    <mat-form-field >
+                        <mat-label>Email</mat-label>
+                        <input 
+                            [formControl]="emailField" 
+                            matInput placeholder="Email" 
+                            value="email@example.com">
+                    </mat-form-field>
+                    <br>
+                    <button 
+                        mat-raised-button 
+                        [disabled]="emailField.invalid && emailField.dirty"
+                        (click)="sendMail()">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rollerclub-platzi": {
+      "hosting": {
+        "skate-shop": [
+          "rollerclub-platzi"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rollerclub-platzi"
+  }
+}

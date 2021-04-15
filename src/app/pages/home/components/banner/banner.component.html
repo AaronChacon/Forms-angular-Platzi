@@ -1,0 +1,8 @@
+<swiper class="swiper" [config]="config">
+    <div class="swiper-wrapper">
+      <img class="swiper-slide" *ngFor="let img of images" [src]="img" [alt]="'Banner'" />
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </swiper>
