@@ -1,4 +1,4 @@
-<div class="p-3">
+<div class="container p-3">
     <h1>Basic Forms</h1>
 
     <form [formGroup]="form" (ngSubmit)="save($event)">
@@ -13,14 +13,91 @@
                 type="text" 
                 formControlName="name"
             >
-            <div class="py-3">
+            <!-- <div class="py-3">
                 <button mat-raised-button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
-            </div>
+            </div> -->
             <div class="py-3">
                 Data - Name: {{nameField.value}}
             </div>
         </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                class="form-control"
+                name="email"
+                [class.is-valid]="isEmailValid"
+                [class.is-invalid]="isEmailInValid"
+                type="email" 
+                formControlName="email"
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input 
+                class="form-control"
+                name="phone"
+                [class.is-valid]="isPhoneValid"
+                [class.is-invalid]="isPhoneInValid"
+                type="tel" 
+                formControlName="phone"
+            >
+        </div>
 
+        <div class="form-group">
+            <label for="phone">Color</label>
+            <input 
+                class="form-control"
+                name="color"
+                type="color" 
+                formControlName="color"
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Date</label>
+            <input 
+                class="form-control"
+                name="date"
+                type="date" 
+                formControlName="date"
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Number</label>
+            <input 
+                class="form-control"
+                name="number"
+                type="number" 
+                formControlName="number"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label>
+
+            <select class="form-control" name="category" formControlName="categoty">
+                <option value="category-1">Category 1</option>
+                <option value="category-2">Category 2</option>
+                <option value="category-3">Category 3</option>
+                <option value="category-4">Category 4</option>
+            </select>
+            
+        </div>
+        
+        <div class="form-group">
+            <label for="agree">Agree</label>
+
+            <input 
+                class="form-control mr-auto"
+                name="agree"
+                type="checkbox" 
+                formControlName="agree"
+            >
+
+        </div>
 
         <div class="my-3">
             <button mat-raised-button type="submit" >Send</button>
