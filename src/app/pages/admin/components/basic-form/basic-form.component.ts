@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -9,53 +9,61 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 })
 export class BasicFormComponent implements OnInit {
 
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-    enail: new FormControl(''),
-    phone: new FormControl(''),
-    color: new FormControl('#000000'),
-    date: new FormControl(''),
-    number: new FormControl(12),
-    categoty: new FormControl('category-3'),
-    tag: new FormControl(''),
-    agree: new FormControl(false),
-    gender: new FormControl(''),
-    zone: new FormControl(''),
-  });
+  form: FormGroup;
 
-  nameField = new FormControl('', [Validators.required, Validators.maxLength(10)]);
-  emailField = new FormControl('');
-  phoneField = new FormControl('');
-  colorField = new FormControl('');
-  dateField = new FormControl('');
-  numberField = new FormControl('');
-
-  categoryField = new FormControl('category-3');
-  tagField = new FormControl('');
-
-  agreeField = new FormControl(false);
-  genderField = new FormControl('');
-  zoneField = new FormControl('');
-
-  constructor() { }
+  constructor( 
+    private formBuilder:FormBuilder,
+  ) { }
 
   ngOnInit(): void {
-    this.nameField.valueChanges
+    this.buildForm();
+    this.form.valueChanges
         .subscribe(value => {
           console.log(value);
+          
         })
   }
 
   getNameValue(){
-    console.log(this.nameField.value);
+    console.log(this.form.get('name').value);
+  }
+
+  save(event: Event){
+    event.preventDefault();
+    if (this.form.valid) {
+      console.log(this.form.value);
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  private buildForm(){
+
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(10)] ],
+      enail: [''],
+      phone: [''],
+      color: ['#000000'],
+      date: [''],
+      number: [12],
+      categoty: [''],
+      tag: [''],
+      agree: [false],
+      gender: [''],
+      zone: [''],
+    });
+
+  }
+
+  get nameField() {
+    return this.form.get('name');
   }
 
   get isNameValid() {
-    return this.nameField.touched && this.nameField.valid
+    return this.form.get('name').touched && this.form.get('name').valid;
   }
-
   get isNameInValid() {
-    return this.nameField.touched && this.nameField.invalid
+    return this.form.get('name').touched && this.form.get('name').invalid;
   }
 
 }

@@ -1,7 +1,7 @@
 <div class="p-3">
     <h1>Basic Forms</h1>
 
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="save($event)">
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -13,135 +13,18 @@
                 type="text" 
                 formControlName="name"
             >
-            <p>
-                Name: {{nameField.value}}
-            </p>
-            <p>
+            <div class="py-3">
                 <button mat-raised-button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
-            </p>
+            </div>
+            <div class="py-3">
+                Data - Name: {{nameField.value}}
+            </div>
         </div>
 
+
+        <div class="my-3">
+            <button mat-raised-button type="submit" >Send</button>
+        </div>
     </form>
 
-    <!-- 
-        <p>
-            <input 
-                [class.is-valid]="isNameValid"
-                [class.is-invalid]="isNameInValid"
-                type="text" 
-                [formControl]="nameField"
-                >
-            <br>
-            Name: {{nameField.value}}
-            <br>
-            <button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
-        </p>
-    -->
-    <p>
-        <strong *ngIf="nameField.touched && nameField.hasError('required')">This Field is required</strong>
-    </p>
-    <p>
-        <strong *ngIf="nameField.touched && nameField.hasError('maxlength')">this maximum field is 10 characters</strong>
-    </p>
-    <div>
-    
-        <input type="email" [formControl]="emailField">
-        <br>
-        Email: {{emailField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <input type="tel" [formControl]="phoneField">
-        <br>
-        Phone: {{phoneField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <input type="color" [formControl]="colorField">
-        <br>
-        Color: {{colorField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <input type="date" [formControl]="dateField">
-        <br>
-        Date: {{dateField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <input type="" [formControl]="numberField">
-        <br>
-        Number: {{numberField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <select [formControl]="categoryField">
-            <option value="category-1">Category 1</option>
-            <option value="category-2">Category 2</option>
-            <option value="category-3">Category 3</option>
-            <option value="category-4">Category 4</option>
-        </select>
-        <br>
-        Category: {{categoryField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <select [formControl]="tagField" multiple>
-            <option value="tag-1">Tag 1</option>
-            <option value="tag-2">Tag 2</option>
-            <option value="tag-3">Tag 3</option>
-            <option value="tag-4">Tag 4</option>
-        </select>
-        <br>
-        Tags: {{tagField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <input type="checkbox" [formControl]="agreeField">
-        <br>
-        Agree: {{agreeField.value}}
-        <br>
-    </div>
-    <br>
-    <div>
-        <label>
-            <input name="gender" type="radio" value="male" [formControl]="genderField">
-            Male
-        </label>
-        <label>
-            <input name="gender" type="radio" value="female" [formControl]="genderField">
-            Female
-        </label>
-        <label>
-            <input name="gender" type="radio" value="other" [formControl]="genderField">
-            Other
-        </label>
-        <br>
-        Gender: {{genderField.value}}
-        <br>
-    </div>
-    <div>
-        <label>
-            <input name="zone" type="radio" value="zone-1" [formControl]="zoneField">
-            zone-1
-        </label>
-        <label>
-            <input name="zone" type="radio" value="zone-2" [formControl]="zoneField">
-            zone-2
-        </label>
-        <label>
-            <input name="zone" type="radio" value="zone-3" [formControl]="zoneField">
-            zone-3
-        </label>
-        <br>
-        Zone: {{zoneField.value}}
-        <br>
-    </div>
 </div>
