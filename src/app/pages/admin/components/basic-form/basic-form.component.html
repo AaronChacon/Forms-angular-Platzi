@@ -1,15 +1,48 @@
 <div class="p-3">
     <h1>Basic Forms</h1>
-    <br>
-    <div>
-    
-        <input type="text" [formControl]="nameField">
-        <br>
-        Name: {{nameField.value}}
-        <br>
-        <button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
-    </div>
-    <br>
+
+    <form [formGroup]="form">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input 
+                class="form-control"
+                name="name"
+                [class.is-valid]="isNameValid"
+                [class.is-invalid]="isNameInValid"
+                type="text" 
+                formControlName="name"
+            >
+            <p>
+                Name: {{nameField.value}}
+            </p>
+            <p>
+                <button mat-raised-button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
+            </p>
+        </div>
+
+    </form>
+
+    <!-- 
+        <p>
+            <input 
+                [class.is-valid]="isNameValid"
+                [class.is-invalid]="isNameInValid"
+                type="text" 
+                [formControl]="nameField"
+                >
+            <br>
+            Name: {{nameField.value}}
+            <br>
+            <button [disabled]="nameField.invalid" (click)="getNameValue()">Get Value</button>
+        </p>
+    -->
+    <p>
+        <strong *ngIf="nameField.touched && nameField.hasError('required')">This Field is required</strong>
+    </p>
+    <p>
+        <strong *ngIf="nameField.touched && nameField.hasError('maxlength')">this maximum field is 10 characters</strong>
+    </p>
     <div>
     
         <input type="email" [formControl]="emailField">
