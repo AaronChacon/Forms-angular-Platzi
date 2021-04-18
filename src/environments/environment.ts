@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   url_api: 'https://platzi-store.herokuapp.com',
+  url_api_admin: 'https://store.nicobytes.site/api',
   firebase: {
     apiKey: 'AIzaSyBhpao6Z3sg_YJVA5MgGmz3lzeBL--WDl4',
     authDomain: 'rollerclub-platzi.firebaseapp.com',

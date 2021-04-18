@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductFormComponent } from './components/product-form/product-form.component';
 import { NavComponent } from './components/nav/nav.component';
-import { TableComponent } from './components/table/table.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
-import { ProductEditComponent } from './components/product-edit/product-edit.component';
+import { ProductEditComponent } from './products/components/product-edit/product-edit.component';
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
 
 const routes: Routes = [
@@ -15,23 +11,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
-      },
-      {
-        path: 'list',
-        component: TableComponent
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'products',
-        component: ProductsCatalogComponent
+        loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
       },
       {
-        path: 'products/create',
-        component: ProductFormComponent
-      },
-      {
-        path: 'products/edit/:id',
-        component: ProductEditComponent
+        path: 'categories',
+        loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule)
       },
       {
         path: 'basic',

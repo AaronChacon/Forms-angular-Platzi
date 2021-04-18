@@ -1,0 +1,45 @@
+<div class="container-fluid my-3">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <mat-card class="p-3">
+          <mat-card-header>
+            <mat-card-title>Categories</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <div class="row m-0">
+                <div class="col-xs">
+                  <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input placeholder="Nombre" formControlName="name" matInput type="text">
+                    <div class="messages" *ngIf="nameField.touched && nameField.invalid">
+                      <mat-error *ngIf="nameField.hasError('required')">
+                       This field is required
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row m-0">
+                <div class="col-xs">
+                    <img *ngIf="imageField.value" [src]="imageField.value" [alt]="'image'">
+                    <div class="custom-file">
+                        <input
+                            (change)="uploadFile($event)"
+                            type="file" 
+                            class="custom-file-input" id="customFileLang" lang="en">
+                        <label class="custom-file-label" for="customFileLang">Select File</label>
+                    </div>
+                    <div class="messages" *ngIf="imageField.touched && imageField.invalid">
+                        <mat-error *ngIf="imageField.hasError('required')">
+                        This field is required
+                        </mat-error>
+                    </div>
+                </div>
+              </div>
+          </mat-card-content>
+          <mat-card-actions class="px-2">
+            <button mat-raised-button type="submit">Save category</button>
+          </mat-card-actions>
+        </mat-card>
+      
+    </form>
+</div>

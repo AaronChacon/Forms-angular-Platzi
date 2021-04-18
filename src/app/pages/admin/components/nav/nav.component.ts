@@ -12,7 +12,8 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class NavComponent {
 
-  btnNP = true;
+  btnPro = false;
+  btnCat = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,15 +29,25 @@ export class NavComponent {
 
   }
 
-  /* ngDoCheck(): void {
-    this.btnHidden()
-  } */
+  ngDoCheck(): void {
+    this.btnProducts()
+    this.btnCategory()
+  }
 
-  btnHidden() {
-    if (this.router.url  == '/admin/create') {
-      this.btnNP = false;
+  btnProducts() {
+    //console.log(this.router.url);
+    if (this.router.url  === '/admin/products') {
+      this.btnPro = true;
     } else {
-      this.btnNP = true;
+      this.btnPro = false;
+    }
+  }
+  
+  btnCategory() {
+    if (this.router.url  === '/admin/categories') {
+      this.btnCat = true;
+    } else {
+      this.btnCat = false;
     }
   }
 
