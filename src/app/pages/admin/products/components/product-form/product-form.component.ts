@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Event, Router } from '@angular/router';
@@ -7,24 +7,32 @@ import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { MyValidators } from 'src/app/utils/validators';
 import { IProduct } from 'src/app/product.model';
+import { CategoriesService } from '../../../../../core/services/categories.service';
+import { Category } from '../../../../../core/models/category.model';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit{
 
   form: FormGroup;
   images$: Observable<any>;
+  categories: Category[] = [];
   
   constructor(
     private fb: FormBuilder,
     private productsService: ProductsService,
     private router: Router,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private categoriesService: CategoriesService,
   ) {
     this.buildForm();
+  }
+
+  ngOnInit(){
+    this.getCategories();
   }
 
   get priceFiled() {
@@ -42,9 +50,9 @@ export class ProductFormComponent {
   }
 
   saveProduct() {
-    console.log(this.form.value);
     if (this.form.valid) {
       const product = this.form.value;
+      console.log(product);
       this.productsService.createProduct(product)
           .subscribe( (newProduct: IProduct) => {
             console.log(newProduct);
@@ -68,6 +76,14 @@ export class ProductFormComponent {
           })
         )
         .subscribe();
+  }
+
+  private getCategories(){
+    this.categoriesService.getAllCategories()
+        .subscribe( (data) => {
+          console.log(data);
+          this.categories = data;
+        })
   }
   
 }
