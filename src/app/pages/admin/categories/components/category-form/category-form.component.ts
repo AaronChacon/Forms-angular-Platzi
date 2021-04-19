@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CategoriesService } from 'src/app/core/services/categories.service';
@@ -17,26 +17,29 @@ export class CategoryFormComponent implements OnInit {
 
   form: FormGroup;
   urlImage$: Observable<string>;
-  categoryId: string;
+  isNew = true;
+ 
+  @Input()
+  set category(data: Category){
+    if(data){
+      this.isNew = false;
+      this.form.patchValue(data);
+    }
+  }
+
+  @Output() create = new EventEmitter();
+  @Output() update = new EventEmitter();;
 
   
   constructor(
     private formBuilder: FormBuilder,
-    private categoriesService: CategoriesService,
-    private router: Router,
     private storage: AngularFireStorage,
-    private route: ActivatedRoute,
+    private categoriesService: CategoriesService,
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.categoryId = params.id;
-      if (this.categoryId) {
-        this.getCategory(this.categoryId);
-      }
-    })
   }
 
   private buildForm() {
@@ -56,41 +59,14 @@ export class CategoryFormComponent implements OnInit {
 
   save() {
     if (this.form.valid) {
-      if (this.categoryId) {
-        this.updateCategory();
+      if (this.isNew) {
+        this.create.emit(this.form.value);
       } else {
-        this.createCategory();
+        this.update.emit(this.form.value);
       }
     } else {
       this.form.markAllAsTouched();
     }
-  }
-
-  private createCategory() {
-    const data = this.form.value;
-    this.categoriesService.createCategory(data)
-    .subscribe(rta => {
-      console.log(rta);
-      this.router.navigate(['/admin/categories']);
-    });
-  }
-
-  private updateCategory() {
-    const data = this.form.value;
-    const id = this.categoryId;
-    this.categoriesService.updateCategory(id, data)
-    .subscribe(rta => {
-      console.log(rta);
-      this.router.navigate(['/admin/categories']);
-    });
-  }
-
-  private getCategory(id: string){
-    this.categoriesService.getCategory(id)
-    .subscribe(data => {
-      console.log(data);
-      this.form.patchValue(data);
-    });
   }
 
   uploadFile(event){

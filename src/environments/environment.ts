@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url_api: 'https://platzi-store.herokuapp.com',
+  //url_api: 'https://platzi-store.herokuapp.com',
+  url_api: 'https://store.nicobytes.site/api',
   url_api_admin: 'https://store.nicobytes.site/api',
   firebase: {
     apiKey: 'AIzaSyBhpao6Z3sg_YJVA5MgGmz3lzeBL--WDl4',

@@ -10,11 +10,11 @@ const routes: Routes = [
     component: ProductsCatalogComponent
   },
   {
-    path: 'products/create',
+    path: 'create',
     component: ProductFormComponent
   },
   {
-    path: 'products/edit/:id',
+    path: 'edit/:id',
     component: ProductEditComponent
   },
 ];

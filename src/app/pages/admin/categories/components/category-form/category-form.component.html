@@ -44,8 +44,8 @@
           </mat-card-content>
           <mat-card-actions class="px-2">
             <button mat-raised-button type="submit">
-              <span *ngIf="!categoryId">Create category</span>
-              <span *ngIf="categoryId">Update category</span>
+              <span *ngIf="isNew">Create category</span>
+              <span *ngIf="!isNew">Update category</span>
             </button>
           </mat-card-actions>
         </mat-card>

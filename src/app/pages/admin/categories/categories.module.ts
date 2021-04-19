@@ -6,12 +6,13 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../material/material.module';
+import { CategoryComponent } from './containers/category/category.component';
 
 
 @NgModule({
   declarations: [
     CategoriesComponent, 
-    CategoryFormComponent 
+    CategoryFormComponent, CategoryComponent 
   ],
   imports: [
     CommonModule,

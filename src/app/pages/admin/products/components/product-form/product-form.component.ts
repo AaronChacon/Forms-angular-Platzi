@@ -33,11 +33,11 @@ export class ProductFormComponent {
 
   private buildForm ()  {
     this.form = this.fb.group({
-      id: ['', [Validators.required]],
-      title: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required, MyValidators.isPriceValid]],
-      image: [''],
-      description: ['', [Validators.required]],
+      image: ['', [Validators.required]],
+      category_id: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
     })
   }
 
