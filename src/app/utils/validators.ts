@@ -1,5 +1,7 @@
 import { AbstractControl } from "@angular/forms";
 import { Controller } from "swiper";
+import { CategoriesService } from '../core/services/categories.service';
+import { map } from 'rxjs/operators';
 
 export class MyValidators {
 
@@ -30,6 +32,20 @@ export class MyValidators {
             return null
         }
         return {invalid_match_pass: true};
+    }
+
+    static validateCategory(service: CategoriesService){
+        return (control: AbstractControl) => {
+            const value = control.value;
+            return service.checkCategory(value)
+                        .pipe(map((resp: any) => {
+                            const isAvailable = resp.isAvailable;
+                            if (!isAvailable) {
+                                return {not_available: true};
+                            }
+                            return null;
+                        }))
+        } 
     }
 
     

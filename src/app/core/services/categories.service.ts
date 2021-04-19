@@ -18,6 +18,10 @@ export class CategoriesService {
   getAllCategories(){
     return this.http.get<Category[]>(`${url_admin}/categories/`);
   }
+  
+  getCategory(id: string){
+    return this.http.get<Category>(`${url_admin}/categories/${id}`);
+  }
 
   createCategory(data: Partial<Category>){
     return this.http.post<Category[]>(`${url_admin}/categories/`, data);
@@ -26,5 +30,10 @@ export class CategoriesService {
   updateCategory(id: string, data: Partial<Category>){
     return this.http.put<Category[]>(`${url_admin}/categories/${id}`, data);
   }
+
+  checkCategory(name: string){
+    return this.http.post(`${url_admin}/categories/availability`, {name});
+  }
+
 
 }

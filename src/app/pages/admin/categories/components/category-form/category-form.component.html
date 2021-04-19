@@ -14,6 +14,12 @@
                       <mat-error *ngIf="nameField.hasError('required')">
                        This field is required
                       </mat-error>
+                      <mat-error *ngIf="nameField.hasError('minLength')">
+                       Musb be a minimum of 4 characters
+                      </mat-error>
+                      <mat-error *ngIf="nameField.hasError('not_available')">
+                        this name isn't available
+                      </mat-error>
                     </div>
                   </mat-form-field>
                 </div>
@@ -37,7 +43,10 @@
               </div>
           </mat-card-content>
           <mat-card-actions class="px-2">
-            <button mat-raised-button type="submit">Save category</button>
+            <button mat-raised-button type="submit">
+              <span *ngIf="!categoryId">Create category</span>
+              <span *ngIf="categoryId">Update category</span>
+            </button>
           </mat-card-actions>
         </mat-card>
       
