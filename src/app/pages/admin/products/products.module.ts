@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductsCatalogComponent } from './components/products-catalog/products-catalog.component';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProductsCatalogComponent } from './components/products-catalog/products
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class ProductsModule { }

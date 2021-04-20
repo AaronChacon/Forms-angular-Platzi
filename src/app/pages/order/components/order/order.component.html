@@ -40,28 +40,29 @@
             
             <div class="row">
                 <div class="col-12">
-                <button mat-raised-button type="button" (click)="addAddressField()">Add address</button>
-                <div formArrayName="address" *ngFor="let address of addressField.controls; let i=index">
+                    <button mat-raised-button type="button" (click)="addAddressField()">Add address</button>
+                    <br>
+                    <div formArrayName="address" *ngFor="let address of addressField.controls; let i=index">
 
-                    <div [formGroupName]="i">
-                        <mat-field>
-                            <mat-label>ZipCode</mat-label>
-                            <input
-                                matInput 
-                                formControlName="zip"  
-                                type="text"
-                                placeholder="zip">
-                        </mat-field>
-                        <mat-field>
-                            <mat-label>Text</mat-label>
-                            <input
-                                matInput 
-                                formControlName="text"  
-                                type="text"
-                                placeholder="text">
-                        </mat-field>
+                        <div [formGroupName]="i">
+                            <mat-field>
+                                <mat-label>ZipCode</mat-label>
+                                <input
+                                    matInput 
+                                    formControlName="zip"  
+                                    type="text"
+                                    placeholder="zip">
+                            </mat-field>
+                            <mat-field>
+                                <mat-label>Text</mat-label>
+                                <input
+                                    matInput 
+                                    formControlName="text"  
+                                    type="text"
+                                    placeholder="text">
+                            </mat-field>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
